@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,36 +10,43 @@
         body {
             background-color: #f8f9fa;
         }
+
         .main-content {
             min-height: 80vh;
             display: flex;
             align-items: center;
         }
+
         .card {
             border: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
         }
+
         .card:hover {
             transform: translateY(-5px);
         }
+
         .footer {
             background-color: #343a40;
             color: #ffffff;
             padding: 2rem 0;
             margin-top: auto;
         }
+
         .contact-link {
-            color: #ffffff;
-            text-decoration: none;
-            border-bottom: 1px dotted #ffffff;
-        }
-        .contact-link:hover {
             color: #17a2b8;
-            border-bottom-color: #17a2b8;
+            text-decoration: none;
+            border-bottom: 1px dotted #17a2b8;
+        }
+
+        .contact-link:hover {
+            color: #138496;
+            border-bottom-color: #138496;
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -52,6 +60,9 @@
                 <div class="col-md-8">
                     <div class="card p-5 text-center">
                         <h1 class="mb-4">Developer Site</h1>
+                        <div class="container text-center">
+                            <p>お問い合わせ: <a href="mailto:me@buildgeeks.dev" class="contact-link">me@buildgeeks.dev</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,10 +71,11 @@
 
     <footer class="footer">
         <div class="container text-center">
-            <p>お問い合わせ: <a href="mailto:me@buildgeeks.dev" class="contact-link">me@buildgeeks.dev</a></p>
+            <p>&copy; 2024 BUILD GEEKS inc. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
