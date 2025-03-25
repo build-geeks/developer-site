@@ -6,62 +6,267 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUILD GEEKS inc. - Developer Site</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #00f6ff;
+            --secondary-color: #0066ff;
+            --bg-dark: #0a0f1b;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
         body {
-            background-color: #f8f9fa;
+            background-color: var(--bg-dark);
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 246, 255, 0.2) 0%, transparent 40%);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-primary);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: transparent !important;
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.75rem;
+            color: var(--text-primary) !important;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .main-content {
-            min-height: 80vh;
+            min-height: 85vh;
             display: flex;
             align-items: center;
+            position: relative;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: transparent;
+            animation: stars 20s linear infinite;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, var(--text-primary), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, var(--text-primary), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, var(--text-primary), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, var(--text-primary), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, var(--text-primary), rgba(0,0,0,0));
+            background-size: 200px 200px;
+        }
+
+        @keyframes stars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100%); }
         }
 
         .card {
-            border: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transition: 0.5s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
 
-        .footer {
-            background-color: #343a40;
-            color: #ffffff;
-            padding: 2rem 0;
-            margin-top: auto;
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card h1 {
+            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .h5 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .lead {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .contact-link {
-            color: #17a2b8;
+            color: var(--primary-color);
             text-decoration: none;
-            border-bottom: 1px dotted #17a2b8;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(0, 246, 255, 0.3);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(0, 246, 255, 0.1);
+            transition: all 0.3s ease;
+            z-index: -1;
         }
 
         .contact-link:hover {
-            color: #138496;
-            border-bottom-color: #138496;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
         }
+
+        .contact-link:hover::before {
+            width: 100%;
+        }
+
+        .footer {
+            background: rgba(10, 15, 27, 0.8);
+            backdrop-filter: blur(10px);
+            color: var(--text-secondary);
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px rgba(0, 246, 255, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(0, 246, 255, 0.7); }
+            100% { text-shadow: 0 0 10px rgba(0, 246, 255, 0.5); }
+        }
+
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="stars"></div>
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="/">BUILD GEEKS inc. - Developer Site</a>
+            <a class="navbar-brand" href="/">BUILD GEEKS</a>
         </div>
     </nav>
 
     <div class="main-content">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card p-5 text-center">
-                        <h1 class="mb-4">Developer Site</h1>
-                        <div class="container text-center">
-                            <p>お問い合わせ: <a href="mailto:me@buildgeeks.dev" class="contact-link">me@buildgeeks.dev</a></p>
+                <div class="col-md-10">
+                    <div class="card p-5">
+                        <div class="text-center">
+                            <h1 class="mb-4">INNOVATION THROUGH CODE</h1>
+                            <p class="lead mb-5">
+                                次世代のテクノロジーで、<br>
+                                ビジネスの可能性を無限に広げる
+                            </p>
+                        </div>
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-code fa-2x mb-3" style="color: var(--primary-color)"></i>
+                                    <h3 class="h5">NEXT-GEN WEB</h3>
+                                    <p class="text-muted">次世代Web技術を駆使した革新的なプラットフォーム開発</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-mobile-alt fa-2x mb-3" style="color: var(--primary-color)"></i>
+                                    <h3 class="h5">MOBILE EVOLUTION</h3>
+                                    <p class="text-muted">最先端のモバイル体験をデザインから実装まで</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-cloud fa-2x mb-3" style="color: var(--primary-color)"></i>
+                                    <h3 class="h5">CLOUD INNOVATION</h3>
+                                    <p class="text-muted">未来を見据えたスケーラブルなインフラ構築</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <p class="mb-4">
+                                <a href="mailto:me@buildgeeks.dev" class="contact-link">CONTACT US</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -70,8 +275,10 @@
     </div>
 
     <footer class="footer">
-        <div class="container text-center">
-            <p>&copy; 2024 BUILD GEEKS inc. All Rights Reserved.</p>
+        <div class="container">
+            <div class="text-center">
+                <p>&copy; 2025 BUILD GEEKS inc.</p>
+            </div>
         </div>
     </footer>
 
